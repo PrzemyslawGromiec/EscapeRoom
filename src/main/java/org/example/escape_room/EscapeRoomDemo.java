@@ -52,8 +52,8 @@ public class EscapeRoomDemo {
         while (true) {
             System.out.println("wpisz swoj wybor");
             for (String item : items) {
-                if (!item.startsWith("ukryte") || isItBright(windowBooleanList)) {
 
+                if (isAvaliable(item, windowBooleanList)) {
                     System.out.println(item);
                 }
             }
@@ -65,7 +65,7 @@ public class EscapeRoomDemo {
             System.out.println("Uzywam: " + choice);
 
 
-            if (items.contains(choice)) {
+            if (items.contains(choice) && isAvaliable(choice, windowBooleanList)) {
                 if (choice.startsWith("okno")) {
                     int index = items.indexOf(choice);
                     System.out.println(windowBooleanList);
@@ -97,6 +97,14 @@ public class EscapeRoomDemo {
     }
 
 }
+
+    private static boolean isAvaliable(String item, List<Boolean> windowBooleanList) {
+       if (!item.startsWith("ukryte") || isItBright(windowBooleanList)){
+           return true;
+       }
+       return false;
+    }
+
 
     private static boolean isItBright(List<Boolean> windowBooleanList) {
         for (int i =0; i < windowBooleanList.size(); i++) {
