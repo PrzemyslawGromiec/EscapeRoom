@@ -52,7 +52,6 @@ public class EscapeRoomDemo {
         while (true) {
             System.out.println("wpisz swoj wybor");
             for (String item : items) {
-
                 if (isAvaliable(item, windowBooleanList)) {
                     System.out.println(item);
                 }
@@ -75,7 +74,7 @@ public class EscapeRoomDemo {
             } else if (choice.equalsIgnoreCase("klucz")) {
                 System.out.println("Zabrales klucz. ");
                 items.remove("klucz");
-            } else if (choice.equalsIgnoreCase("drzwi")) {
+            } else if (choice.toLowerCase().contains("drzwi")) {
                 System.out.println("Probujesz otworzyc drzwi.");
                 if (!items.contains("klucz")) {
                     System.out.println("Otworzyles drzwi!");
