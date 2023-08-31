@@ -1,4 +1,4 @@
-okno1;klucz;drzwi;
-klucz;drzwi;
-klucz;klucz;drzwi;
-okno1;okno2;okno3;ukryte drzwi;
+okno1;klucz;drzwi-1;
+drzwi-1;szkatulka;klucz;
+klucz;klucz;drzwi-2;
+okno1;okno2;okno3;ukryte drzwi-0;

@@ -9,10 +9,10 @@ import java.util.Scanner;
 
 public class ReadingCSV {
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File("src/main/java/org/example/escape_room/rooms.csv"));
+/*        Scanner scanner = new Scanner(new File("src/main/java/org/example/escape_room/rooms.csv"));
         Scanner sc = new Scanner(System.in);
         System.out.println("Ktory pokoj przygotowac?");
-        int nr = sc.nextInt();
+        int nr = sc.nextInt();*/
 
        /* String fileLine = scanner.nextLine();
         System.out.println(fileLine);
@@ -21,7 +21,7 @@ public class ReadingCSV {
 
         List<String> items = Arrays.asList(itemsArray);
         System.out.println(items);*/
-        List<String> lineNr = new ArrayList<>();
+     /*   List<String> lineNr = new ArrayList<>();
         for (int i = 0; i < nr; i++) {
             String fileLine = scanner.nextLine();
             if (i == nr - 1) {
@@ -32,5 +32,18 @@ public class ReadingCSV {
 
         }
         System.out.println(lineNr);
+    }*/
+
+        String[] items = new String[3];
+        items = new String[]{"klucz", "drzwi", "szkatulka"};
+
+
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            String choice = scanner.nextLine();
+
+
+
+        }
     }
 }

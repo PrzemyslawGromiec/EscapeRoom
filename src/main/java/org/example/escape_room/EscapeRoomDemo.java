@@ -36,12 +36,12 @@ public class EscapeRoomDemo {
 
     // ukryte drzwi nie pojawia sie na liscie dopoki 2 okna nie zostana otwarte
 
-
+    //TODO: ciekawsza gra - drugi pokoj, szkatulka po ktorej otwarciu pojawia sie klucz otwierajacy drzwi
     public static void main(String[] args) throws FileNotFoundException {
-        int roomNr = 4;
+        int roomNr = 2;
         System.out.println("Mozesz wybrac pomiedzy: ");
         List<String> items = lineNR(roomNr);
-       // System.out.println(items);
+        int numberOfKeys = 0;
         Scanner scanner = new Scanner(System.in);
 
 
@@ -56,7 +56,7 @@ public class EscapeRoomDemo {
                     System.out.println(item);
                 }
             }
-            //System.out.println(items);
+
 
             System.out.println();
             String choice = scanner.nextLine();
@@ -70,43 +70,58 @@ public class EscapeRoomDemo {
                     System.out.println(windowBooleanList);
                     windowBooleanList.set(index, !windowBooleanList.get(index));
                     System.out.println(windowBooleanList);
-                // System.out.println("Okno jest: " + (windowOpen ? "zamkniete" : "otwarte"));
-            } else if (choice.equalsIgnoreCase("klucz")) {
-                System.out.println("Zabrales klucz. ");
-                items.remove("klucz");
-            } else if (choice.toLowerCase().contains("drzwi")) {
-                System.out.println("Probujesz otworzyc drzwi.");
-                if (!items.contains("klucz")) {
-                    System.out.println("Otworzyles drzwi!");
-                    roomNr++;
-                    items = lineNR(roomNr);
-                    System.out.println("Przechodzisz do kolejnego pokoju.");
-                } else {
-                    System.out.println("Nie masz klucza. Nie mozesz otworzyc drzwi. ");
+                    // System.out.println("Okno jest: " + (windowOpen ? "zamkniete" : "otwarte"));
+                } else if (choice.equalsIgnoreCase("klucz")) {
+                    System.out.println("Zabrales klucz. ");
+                    numberOfKeys++;
+                    items.remove("klucz");
+                } else if (choice.toLowerCase().contains("drzwi")) {
+                    System.out.println("Probujesz otworzyc drzwi.");
+                    if (!items.contains("klucz")) {
+                        System.out.println("Otworzyles drzwi!");
+                        roomNr++;
+                        items = lineNR(roomNr);
+                        System.out.println("Przechodzisz do kolejnego pokoju.");
+                    } else {
+                        System.out.println("Nie masz klucza. Nie mozesz otworzyc drzwi. ");
+                    }
                 }
+                System.out.println("Jestes w pokoju nr: " + (roomNr));
+            } else {
+                System.out.println("nie ma takiego przedmiotu ");
             }
-            System.out.println("Jestes w pokoju nr: " + (roomNr));
-        } else{
-            System.out.println("nie ma takiego przedmiotu ");
+            if (items.isEmpty()) {
+                System.out.println("Koniec");
+                return;
+            }
         }
-        if (items.isEmpty()) {
-            System.out.println("Koniec");
-            return;
-        }
+
     }
 
-}
+    //ma pokazac klucz dopiero, gdy ktos wybierze szkatulke
+    //przegladam liste, jesli jest w niej szkatulka, to nie pokazuje klucza
+
+
+    private static boolean hiddenKey(List<String> items) {
+        for (String item : items) {
+            if (!item.startsWith("szkatulka")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     private static boolean isAvaliable(String item, List<Boolean> windowBooleanList) {
-       if (!item.startsWith("ukryte") || isItBright(windowBooleanList)){
-           return true;
-       }
-       return false;
+        if (!item.startsWith("ukryte") || isItBright(windowBooleanList)) {
+            return true;
+        }
+        return false;
     }
 
 
     private static boolean isItBright(List<Boolean> windowBooleanList) {
-        for (int i =0; i < windowBooleanList.size(); i++) {
+        for (int i = 0; i < windowBooleanList.size(); i++) {
             if (!windowBooleanList.get(i)) {
                 return false;
             }
@@ -117,7 +132,7 @@ public class EscapeRoomDemo {
     public static List<Boolean> createWindowBooleanList(List<String> items) {
         List<Boolean> windowBooleanList = new ArrayList<>();
         for (String item : items) {
-            if(item.startsWith("okno")) {
+            if (item.startsWith("okno")) {
                 windowBooleanList.add(false);
             }
         }
@@ -142,19 +157,3 @@ public class EscapeRoomDemo {
         return lineNr;
     }
 }
-
-
-
-
-
-/*
- boolean wzietyKlucz = false;
-        boolean otwarte = true;
-
-        System.out.println("Masz następujące opcje:");
-        System.out.println("1. Okno");
-        System.out.println("2. Drzwi");
-        if (!wzietyKlucz) {
-            System.out.println("3. Klucz");
-        }
-* */
